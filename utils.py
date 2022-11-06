@@ -2,7 +2,7 @@ from typing import Optional
 
 from functions import filter_data, map_data, unique_data, sort_data, limit_data
 
-FILE = 'C:/Users/Влада/PycharmProjects/lesson23_project_source/data/apache_logs.txt'
+FILE = 'data/apache_logs.txt'
 
 
 params_dict = {
