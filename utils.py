@@ -20,10 +20,12 @@ def read_file(filename):
             yield line
 
 
-def query_params(cmd, value, data: Optional):
+def query_params(cmd1, value1, cmd2, value2, data: Optional):
     if data is None:
         prepared_data = read_file(FILE)
     else:
         prepared_data = data
-    result = params_dict[cmd](params=value, data=prepared_data)
-    return list(result)
+
+    result = params_dict[cmd1](params=value1, data=prepared_data)
+    result2 = params_dict[cmd2](params=value2, data=result)
+    return result2

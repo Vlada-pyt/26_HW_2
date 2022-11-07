@@ -1,10 +1,10 @@
 def filter_data(params: str, data):
-    return filter(lambda x: params in x, data)
+    return list(filter(lambda x: params in x, data))
 
 
 def map_data(params, data):
     column = int(params)
-    return map(lambda x: x.split(' ')[column], data)
+    return list(map(lambda x: x.split(' ')[column], data))
 
 
 def unique_data(data, *args, **kwargs):
@@ -17,4 +17,5 @@ def sort_data(params, data):
 
 def limit_data(params, data):
     limit = int(params)
+    data = list(data)
     return data[:limit]

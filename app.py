@@ -10,16 +10,20 @@ main_bp = Blueprint('main', __name__)
 @app.route('/perform_query', methods=['POST'])
 def perform_query():
     try:
-        cmd = request.args.get('cmd1')
-        value = request.args.get('value1')
+        cmd1 = request.args.get('cmd1')
+        value1 = request.args.get('value1')
+        cmd2 = request.args.get('cmd2')
+        value2 = request.args.get('value2')
 
     except ValidationError as error:
         return jsonify(error.messages), 400
     result = None
 
     result = query_params(
-        cmd=cmd,
-        value=value,
+        cmd1=cmd1,
+        value1=value1,
+        cmd2=cmd2,
+        value2=value2,
         data=result,
         )
     return jsonify(result)
