@@ -29,4 +29,4 @@ def perform_query():
     return jsonify(result)
 
 
-app.run()
+app.run(host='127.0.0.1', port=80)

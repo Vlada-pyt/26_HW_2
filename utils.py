@@ -1,31 +1,33 @@
-from typing import Optional
+from typing import Optional, Union, Iterable
 
-from functions import filter_data, map_data, unique_data, sort_data, limit_data
+from functions import filter_data, map_data, unique_data, sort_data, limit_data, regexp_data
+import re
 
 FILE = 'data/apache_logs.txt'
 
 
-params_dict = {
+params_dict: dict = {
     'filter': filter_data,
     'map': map_data,
     'unique': unique_data,
     'sort': sort_data,
     'limit': limit_data,
+    'regex': regexp_data,
 }
 
 
-def read_file(filename):
+def read_file(filename: str):
     with open(filename) as file:
         for line in file:
             yield line
 
 
-def query_params(cmd1, value1, cmd2, value2, data: Optional):
+def query_params(cmd1: str, value1: Union[str, int], cmd2: str, value2: Union[str, int], data: Iterable[str]):
     if data is None:
         prepared_data = read_file(FILE)
     else:
         prepared_data = data
 
-    result = params_dict[cmd1](params=value1, data=prepared_data)
-    result2 = params_dict[cmd2](params=value2, data=result)
+    result: dict = params_dict[cmd1](params=value1, data=prepared_data)
+    result2: dict = params_dict[cmd2](params=value2, data=result)
     return result2
