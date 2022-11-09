@@ -1,4 +1,4 @@
-from typing import Optional, Union, Iterable
+from typing import Optional, Union, Iterable, Generator, Dict, List
 
 from functions import filter_data, map_data, unique_data, sort_data, limit_data, regexp_data
 import re
@@ -16,13 +16,13 @@ params_dict: dict = {
 }
 
 
-def read_file(filename: str):
+def read_file(filename: str) -> Generator:
     with open(filename) as file:
         for line in file:
             yield line
 
 
-def query_params(cmd1: str, value1: Union[str, int], cmd2: str, value2: Union[str, int], data: Iterable[str]):
+def query_params(cmd1: str, value1: Union[str, int], cmd2: str, value2: Union[str, int], data: Iterable[str]) -> Dict[str, List[str]]:
     if data is None:
         prepared_data = read_file(FILE)
     else:
