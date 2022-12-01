@@ -1,14 +1,14 @@
+import os
 from marshmallow import ValidationError
 from flask import Flask, request, Blueprint, jsonify
 
 from db import db
 from utils import query_params
 
-DB_USER = 'db_user'
-DB_PASSWORD ='db_password'
-DB_NAME = 'db_name'
-DB_PORT = 5434
-DB_HOST = '127.0.0.1'
+DB_USER = os.getenv('DB_USER')
+DB_PASSWORD = os.getenv('DB_PASSWORD')
+DB_NAME = os.getenv('DB_NAME')
+DB_HOST = 'db'
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
