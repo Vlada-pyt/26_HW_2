@@ -11,7 +11,7 @@ jobs:
       - name: login
         run: docker login -u ${{ secrets.DOCKER_LOGIN }} -p ${{ secrets.DOCKER_PASSWORD }}
       - name: push
-        run: docker push ${{ secrets.c }}:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+        run: docker push vladapython/skypro:version-1
   deploy:
     needs: build
     runs-on: ubuntu-latest
