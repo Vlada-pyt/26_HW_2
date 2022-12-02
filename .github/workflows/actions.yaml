@@ -7,7 +7,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: build
-        run: docker build -t ${{ secrets.IMAGE_TAG }}:$GITHUB_REF_NAME-$GITHUB_RUN_ID .
+        run: docker build -t vladapython/skypro:$GITHUB_REF_NAME-$GITHUB_RUN_ID .
       - name: login
         run: docker login -u ${{ secrets.DOCKER_LOGIN }} -p ${{ secrets.DOCKER_PASSWORD }}
       - name: push
@@ -24,7 +24,7 @@ jobs:
           export DB_PASSWORD=${{ secrets.DB_PASSWORD }}
           export DB_USER=${{ secrets.DB_USER }}
           export DB_NAME=${{ secrets.DB_NAME }}
-          export IMAGE_TAG=${{ secrets.IMAGE_TAG }}
+
           type docker-compose-ci.yaml | envsubst > deploy/docker-compose.yaml
       - name: copy files
         uses: appleboy/scp-action@master
