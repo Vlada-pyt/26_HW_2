@@ -1,4 +1,4 @@
 #!/bin/sh
 export FLASK_APP=run.py
-flask db upgrade
+alembic upgrade head
 flask run -h 0.0.0.0 -p 8080
